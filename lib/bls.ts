@@ -28,14 +28,9 @@ export async function findEvent(mins: number): Promise<VEvent | undefined> {
         // if start was within the last mins minutes
         const age = ageInMins(start)
         if (age < mins && age > 0) {
-            console.log(`Publising event within the last ${mins} minutes: ${event.summary}`);
+            console.log(`Found event within the last ${mins} minutes: ${event.summary}`);
             return event
         }
-        if (start.getTime() > (Date.now() - mins * 60 * 1000) && start.getTime() < Date.now()) {
-            console.log(`Publising event within the last ${mins} minutes: ${event.summary}`);
-            return event
-           
-        } 
     }
     return undefined
 }

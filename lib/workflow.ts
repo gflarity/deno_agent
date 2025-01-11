@@ -1,5 +1,5 @@
 import { findEvent, fetchReleaseHTML } from "./bls.ts";
-import { tweet } from "./twitter.ts";
+import { tweetThread } from "./twitter.ts";
 import { twitterSummary } from "./llama.ts";
 import { extractSummary } from "./bls.ts";
 
@@ -20,11 +20,12 @@ export async function executeWorkflow(shouldTweet: boolean, mins: number) {
 
     const textSummary = extractSummary(releaseHTML);
     const tweetSummary = await twitterSummary(textSummary);
-
+s
+    const thread = [tweetSummary, "Generated with #AgenticAI using Llama-3.3-70B-Instruct serverless from @CentML_Inc"]
     if (shouldTweet) {
-        await tweet(tweetSummary);
+        await tweetThread(thread);
     } else {
-        console.log("-t flag not set, not tweeting this;");
-        console.log(tweetSummary);
+        console.log("should tweet not set, not tweeting this:");
+        console.log(thread);
     }
 }

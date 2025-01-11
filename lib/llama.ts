@@ -9,7 +9,7 @@ export async function twitterSummary(text: string) {
     });
 
     const stream = await client.chat.completions.create({
-      messages: [{ role: 'user', content: `Please summarize the following Bureau Of Labour Statistics news release in a format suitable for posting to Twitter/X. I only want the exact text I can post to twitter, no quotes etc: ${text} ` }],
+      messages: [{ role: 'user', content: `Please summarize the following Bureau Of Labour Statistics news release in a format suitable for posting to Twitter/X. I only want the exact text I can post to twitter, no quotes etc: ${text}. Please include #AgenticAI in it.` }],
       model: model,
       stream: true
     });    

@@ -1,4 +1,4 @@
-import { tweet } from "../lib/twitter.ts";
+import {tweetThread } from "../lib/twitter.ts";
 
 
-tweet()
+tweetThread(["Testing my post thread tool", "for Agentic AI workflows... #AgenticAI"])

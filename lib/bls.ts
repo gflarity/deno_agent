@@ -21,18 +21,19 @@ export function ageInMins(date: Date): number {
 
 
 // Find the most recent event that happened within the last mins minutes
-export async function findEvent(mins: number): Promise<VEvent | undefined> {
-    const events = await getAllEvents();
-    for (const event of events) {
+export async function findEvents(mins: number): Promise<VEvent[]> {
+    const allEvents = await getAllEvents();
+    const recentEvents: VEvent[] = []
+    for (const event of allEvents) {
         const start = event.start.date
         // if start was within the last mins minutes
         const age = ageInMins(start)
         if (age < mins && age > 0) {
             console.log(`Found event within the last ${mins} minutes: ${event.summary}`);
-            return event
+            recentEvents.push(event)
         }
     }
-    return undefined
+    return recentEvents
 }
 
 // Fetch the HTML for the release of the event
